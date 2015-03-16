@@ -1,7 +1,16 @@
---- php-5.5.10/configure	2014-03-05 02:52:32.000000000 -0800
-+++ php-src/configure	2014-03-31 20:44:03.000000000 -0700
-@@ -107678,6 +107678,8 @@
-     	output_verbose_link_cmd='echo'
+--- configure   2015-03-16 09:29:34.000000000 -0700
++++ ../php/configure    2015-03-16 09:17:00.000000000 -0700
+@@ -5262,7 +5262,7 @@ test -n "$YACC" || YACC="yacc"
+   # non-working versions, e.g. "3.0 3.2";
+   # remove "none" when introducing the first incompatible bison version an
+   # separate any following additions by spaces
+-  bison_version_exclude="3.0"
++  bison_version_exclude="4.0"
+
+   # for standalone build of Zend Engine
+   test -z "$SED" && SED=sed
+@@ -110042,6 +110042,8 @@ if test -z "$aix_libpath"; then aix_libp
+        output_verbose_link_cmd='echo'
          archive_cmds="\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod${_lt_dsymutil}"
          module_cmds="\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags${_lt_dsymutil}"
 +        # EMBEDTHIS revise
@@ -9,7 +18,7 @@
          archive_expsym_cmds="sed 's,^,_,' < \$export_symbols > \$output_objdir/\${libname}-symbols.expsym~\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring ${_lt_dar_single_mod}${_lt_dar_export_syms}${_lt_dsymutil}"
          module_expsym_cmds="sed -e 's,^,_,' < \$export_symbols > \$output_objdir/\${libname}-symbols.expsym~\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags${_lt_dar_export_syms}${_lt_dsymutil}"
      else
-@@ -108335,9 +108337,13 @@
+@@ -110695,9 +110697,13 @@ darwin* | rhapsody*)
    need_version=no
    library_names_spec='${libname}${release}${versuffix}$shared_ext ${libname}${release}${major}$shared_ext ${libname}$shared_ext'
    soname_spec='${libname}${release}${major}$shared_ext'
@@ -20,6 +29,6 @@
    shrext_cmds='`test .$module = .yes && echo .so || echo .dylib`'
 +  # EMBEDTHIS revise
 +  shrext_cmds=.dylib
- 
+
    sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/local/lib"
    sys_lib_dlsearch_path_spec='/usr/local/lib /lib /usr/lib'
