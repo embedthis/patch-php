@@ -22,14 +22,6 @@ Me.load({
     targets: {
         'pak-postcache': {
             action: `
-                trace('Patch', 'PHP')
-                if (!Path('./configure').exists) {
-                    cmd('buildconf --force')
-                }
-                for each (f in Path('.').files('*.patch')) {
-                    sh('patch < ' + f)
-                }
-
                 trace('Build', 'PHP libraries')
                 if (Config.OS == 'windows') {
                     function cmd(command) {
@@ -47,18 +39,23 @@ Me.load({
                     cmd('nmake clean')
                     cmd('nmake')
 
-                } else if (Config.OS == 'macosx') {
-                    sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-pear --with-xmlrpc --with-zlib --with-curl=/usr/local/opt/curl --with-iconv=/usr/local/opt/libiconv')
-                    sh('make clean')
-                    sh('make')
-
                 } else {
-                    trace('Info', 'Must have installed these packages')
-                    trace('Packages', 'apt-get install build-essential curl libxml2-dev libdb-dev libz-dev')
-                    trace('Packages', 'apt-get install libcurl4-gnutls-dev libmysqlclient15-dev')
                     sh('chmod +x configure build/shtool')
-
-                    sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-regex=system --with-pear --with-xmlrpc --with-zlib --with-curl')
+                    trace('Patch', 'PHP')
+                    if (!Path('./configure').exists) {
+                        sh('buildconf --force')
+                    }
+                    for each (f in Path('.').files('*.patch')) {
+                        sh('patch < ' + f)
+                    }
+                    if (Config.OS == 'macosx') {
+                        sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-pear --with-xmlrpc --with-zlib --with-curl=/usr/local/opt/curl --with-iconv=/usr/local/opt/libiconv')
+                    } else {
+                        trace('Info', 'Must have installed these packages')
+                        trace('Packages', 'apt-get install build-essential curl libxml2-dev libdb-dev libz-dev')
+                        trace('Packages', 'apt-get install libcurl4-gnutls-dev libmysqlclient15-dev')
+                        sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-regex=system --with-pear --with-xmlrpc --with-zlib --with-curl')
+                    }
                     sh('make clean')
                     sh('make')
                 }

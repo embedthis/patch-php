@@ -1,19 +1,5 @@
 --- configure.orig	2018-12-17 19:50:42.000000000 +1100
-+++ configure	2018-12-17 19:58:58.000000000 +1100
-@@ -5261,11 +5261,11 @@
-
-   # we only support certain bison versions;
-   # min: 2.4 (i.e. 204, major * 100 + minor for easier comparison)
--  bison_version_min="204"
-+  bison_version_min="202"
-   # non-working versions, e.g. "3.0 3.2";
-   # remove "none" when introducing the first incompatible bison version an
-   # separate any following additions by spaces
--  bison_version_exclude="3.0"
-+  bison_version_exclude="4.0"
-
-   # for standalone build of Zend Engine
-   test -z "$SED" && SED=sed
++++ configure	2018-12-17 20:07:54.000000000 +1100
 @@ -110243,6 +110243,8 @@
      	output_verbose_link_cmd='echo'
          archive_cmds="\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod${_lt_dsymutil}"
