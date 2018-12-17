@@ -49,6 +49,7 @@ Me.load({
                         sh('patch < ' + f)
                     }
                     if (Config.OS == 'macosx') {
+                        //  PHP 5.6 cannot use bison 3
                         sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-pear --with-xmlrpc --with-zlib --with-curl=/usr/local/opt/curl --with-iconv=/usr/local/opt/libiconv')
                     } else {
                         trace('Info', 'Must have installed these packages')
@@ -57,7 +58,8 @@ Me.load({
                         sh('./configure --disable-debug --disable-rpath --disable-cli --enable-bcmath --enable-calendar --enable-maintainer-zts --enable-embed=shared --enable-ftp --enable-inline-optimization --enable-sockets --enable-wddx --sysconfdir=/etc/appweb --with-pic --with-regex=system --with-pear --with-xmlrpc --with-zlib --with-curl')
                     }
                     sh('make clean')
-                    sh('make')
+                    let major = App.dir.basename.name.split('.')[0]
+                    sh('make libphp' + major + '.la')
                 }
             `
         },
