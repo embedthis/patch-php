@@ -1,6 +1,11 @@
---- configure   2015-03-16 09:29:34.000000000 -0700
-+++ ../php/configure    2015-03-16 09:17:00.000000000 -0700
-@@ -5262,7 +5262,7 @@ test -n "$YACC" || YACC="yacc"
+--- configure.orig	2018-12-17 19:50:42.000000000 +1100
++++ configure	2018-12-17 19:58:58.000000000 +1100
+@@ -5261,11 +5261,11 @@
+
+   # we only support certain bison versions;
+   # min: 2.4 (i.e. 204, major * 100 + minor for easier comparison)
+-  bison_version_min="204"
++  bison_version_min="202"
    # non-working versions, e.g. "3.0 3.2";
    # remove "none" when introducing the first incompatible bison version an
    # separate any following additions by spaces
@@ -9,8 +14,8 @@
 
    # for standalone build of Zend Engine
    test -z "$SED" && SED=sed
-@@ -110042,6 +110042,8 @@ if test -z "$aix_libpath"; then aix_libp
-        output_verbose_link_cmd='echo'
+@@ -110243,6 +110243,8 @@
+     	output_verbose_link_cmd='echo'
          archive_cmds="\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod${_lt_dsymutil}"
          module_cmds="\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags${_lt_dsymutil}"
 +        # EMBEDTHIS revise
@@ -18,7 +23,7 @@
          archive_expsym_cmds="sed 's,^,_,' < \$export_symbols > \$output_objdir/\${libname}-symbols.expsym~\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring ${_lt_dar_single_mod}${_lt_dar_export_syms}${_lt_dsymutil}"
          module_expsym_cmds="sed -e 's,^,_,' < \$export_symbols > \$output_objdir/\${libname}-symbols.expsym~\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags${_lt_dar_export_syms}${_lt_dsymutil}"
      else
-@@ -110695,9 +110697,13 @@ darwin* | rhapsody*)
+@@ -110896,9 +110898,13 @@
    need_version=no
    library_names_spec='${libname}${release}${versuffix}$shared_ext ${libname}${release}${major}$shared_ext ${libname}$shared_ext'
    soname_spec='${libname}${release}${major}$shared_ext'

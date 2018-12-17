@@ -63,6 +63,10 @@ Me.load({
                     sh('make')
                 }
             `
-        }
+        },
+        makepatch: {
+            /* Format patch from the embedthis branch to development */
+            shell: `diff -Naur configure.orig configure >../patch-mbedtls/embedthis.patch`
+        },
     }
 })
