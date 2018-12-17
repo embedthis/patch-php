@@ -40,11 +40,11 @@ Me.load({
                     cmd('nmake')
 
                 } else {
-                    sh('chmod +x configure build/shtool')
                     trace('Patch', 'PHP')
                     if (!Path('./configure').exists) {
                         sh('buildconf --force')
                     }
+                    sh('chmod +x configure build/shtool')
                     for each (f in Path('.').files('*.patch')) {
                         sh('patch < ' + f)
                     }
